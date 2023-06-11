@@ -198,7 +198,7 @@ jobs:
         #sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
         #git pull
         cd /workdir/openwrt
-        [ -f $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH ] && echo try $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH && sudo chmod +x $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH && $DIY_LJX_PACKAGE_SH
+        [ -f $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH ] && echo try $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH && sudo chmod +x $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH && $GITHUB_WORKSPACE/$DIY_LJX_PACKAGE_SH
 
 
     - name: Update feeds
