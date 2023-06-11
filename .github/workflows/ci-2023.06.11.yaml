@@ -44,7 +44,10 @@ on:
         required: false
         default: 'false'
 
-
+      config_add_date_to_grub_title:
+        description: 'add current date to title'
+        required: false
+        default: 'true'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -233,14 +236,14 @@ jobs:
 
 
 
-    - name: run shell [ljx_down_config_by_url.sh]
+    - name: ljx run shell [ljx_down_config_by_url.sh]
       if: (github.event.inputs.config_url != '' && github.event.inputs.config_url  != 'false')
       run: |
         [ ! -d $CONFIG_WORKDIR_OPENWRT ] && sudo mkdir -p $CONFIG_WORKDIR_OPENWRT;sudo chmod -R 777 $CONFIG_WORKDIR_OPENWRT
         [ -e $GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH ] && sudo chmod 777 $GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH;$GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH ${{github.event.inputs.config_url}} ${DIY_CONFIG_EXT_FILE_FULL_PATH}
 
 
-    - name: copy [.config] from path
+    - name: ljx copy diy config.txt to [.config] from path
       if: (github.event.inputs.config_path != 'false' && github.event.inputs.config_path != '')
       run: |
         echo ""
@@ -250,15 +253,6 @@ jobs:
 
 
 
-    - name: echo date to .config
-      run: |
-        echo ""
-        echo "echo build date to .config"
-        [ ! -e $CONFIG_FILE_FULL_PATH ] && touch $CONFIG_FILE_FULL_PATH
-        echo CONFIG_GRUB_TITLE=\"OpenWrt,Lean x64,ljx,Build on $(date +%F_%T)\" >> $CONFIG_FILE_FULL_PATH
-        tail $CONFIG_FILE_FULL_PATH
-
-
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -266,6 +260,18 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+    - name: echo current date to grub title,edit .config
+      if: (github.event.inputs.config_add_date_to_grub_title != 'false' && github.event.inputs.config_add_date_to_grub_title != '')
+      run: |
+        echo ""
+        echo "echo build date to .config"
+        [ ! -e $CONFIG_FILE_FULL_PATH ] && touch $CONFIG_FILE_FULL_PATH
+        echo CONFIG_GRUB_TITLE=\"OpenWrt,Lean x64,ljx,Build on $(date +%F_%T)\" >> $CONFIG_FILE_FULL_PATH
+        echo ""
+        echo "show $CONFIG_FILE_FULL_PATH"
+        tail $CONFIG_FILE_FULL_PATH
+
 
     - name: Download package
       id: package
