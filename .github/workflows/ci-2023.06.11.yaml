@@ -40,7 +40,7 @@ on:
         default: 'false'
 
       config_add_package:
-        description: 'is add package'
+        description: 'is add package,run ljx_package.sh'
         required: false
         default: 'false'
 
@@ -217,9 +217,9 @@ jobs:
       working-directory: /workdir
       run: |
         echo ""
-        echo "cp .config to /workdir/openwrt/.config"
+        echo "try cp .config to /workdir/openwrt/.config"
         cd $GITHUB_WORKSPACE
-        [ -e files ] && mv files /workdir/openwrt/files
+        [ -e files ] && echo "cp .config" && mv files /workdir/openwrt/files
         [ ! -e files ] && echo "";echo "not exist [files]"
         
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE /workdir/openwrt/.config
