@@ -76,4 +76,4 @@ luci-app-tinyproxy=y
 luci-app-v2ray-server=y
 luci-app-wireguard=y
 luci-app-wol=y
-点击唤醒ChatGPT
+
