@@ -8,7 +8,11 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build lean+package,ljx use diy url,2023.06.13
+
+# use arg ssh,package
+
+
+name: Build lean+package,ljx,2023.06.13
 
 on:
   repository_dispatch:
@@ -42,7 +46,7 @@ on:
       config_add_package:
         description: 'is add package,run ljx_package.sh'
         required: false
-        default: 'false'
+        default: 'true'
 
       config_add_date_to_grub_title:
         description: 'add current date to title'
@@ -244,13 +248,17 @@ jobs:
 
     - name: ljx,run shell [ljx_down_config_by_url.sh]
       if: (github.event.inputs.config_url != '' && github.event.inputs.config_url  != 'false')
+      working-directory: /workdir
       run: |
+        echo -e ""
+        echo -e "down config by url"
         [ ! -d $CONFIG_WORKDIR_OPENWRT ] && sudo mkdir -p $CONFIG_WORKDIR_OPENWRT;sudo chmod -R 777 $CONFIG_WORKDIR_OPENWRT
         [ -e $GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH ] && sudo chmod 777 $GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH;$GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH ${{github.event.inputs.config_url}} ${DIY_CONFIG_EXT_FILE_FULL_PATH}
 
 
     - name: ljx,copy diy config.txt to [.config] from path
       if: (github.event.inputs.config_path != 'false' && github.event.inputs.config_path != '')
+      working-directory: /workdir
       run: |
         echo ""
         echo "try cp [${{github.event.inputs.config_path}}] to [${DIY_CONFIG_FILE_FULL_PATH}]"
@@ -380,4 +388,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
-      
