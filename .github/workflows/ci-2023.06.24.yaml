@@ -251,10 +251,10 @@ jobs:
       working-directory: /workdir
       run: |
         echo -e ""
-        echo -e "down config by url"
+        echo -e "down config by url [${{github.event.inputs.config_url}}] to [${DIY_CONFIG_EXT_FILE_FULL_PATHCONFIG_FILE_FULL_PATH}]"
         #[ ! -d $CONFIG_WORKDIR_OPENWRT ] && sudo mkdir -p $CONFIG_WORKDIR_OPENWRT;sudo chmod -R 777 $CONFIG_WORKDIR_OPENWRT
         #[ -f $GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH ] && sudo chmod 777 $GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH;$GITHUB_WORKSPACE/$LJX_DOWN_CONFIG_BY_URL_SH ${{github.event.inputs.config_url}} ${DIY_CONFIG_EXT_FILE_FULL_PATH}
-        wget -O --no-check-certificate -d -v ${DIY_CONFIG_EXT_FILE_FULL_PATHCONFIG_FILE_FULL_PATH} ${{github.event.inputs.config_url}}
+        wget -O ${DIY_CONFIG_EXT_FILE_FULL_PATHCONFIG_FILE_FULL_PATH} --no-check-certificate -d -v ${{github.event.inputs.config_url}}
         echo -e ""
         echo -e "merge file"
         cat ${DIY_CONFIG_EXT_FILE_FULL_PATH} >> ${DIY_CONFIG_EXT_FILE_FULL_PATH}
