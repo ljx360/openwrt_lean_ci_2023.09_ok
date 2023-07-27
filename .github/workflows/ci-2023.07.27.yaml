@@ -101,6 +101,14 @@ jobs:
         echo -e "init os"
 
 
+    - name: init arg
+      run: |
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir/ljx
+        sudo chown -R $USER:$GROUPS /workdir
+
+
+
     - name: df1
       working-directory: /workdir
       run: |
@@ -140,12 +148,6 @@ jobs:
         #sudo chown $USER:$GROUPS /workdir
         
         
-
-    - name: init arg
-      run: |
-        sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir/ljx
-        sudo chown -R $USER:$GROUPS /workdir
 
 
     - name: update openwrt git url
