@@ -12,7 +12,7 @@
 # use arg ssh,package
 
 
-name: Build lean+package,ljx,2023.07.29
+name: Build lean+package,ljx,2023.07.29-v2
 
 on:
   repository_dispatch:
@@ -84,9 +84,9 @@ env:
 
 jobs:
   build:
-    #runs-on: debian-12
+    runs-on: debian-12
     #runs-on: debian-11
-    runs-on: debian-latest
+    #runs-on: debian-latest
     
     #runs-on: ubuntu-22.04
     #runs-on: ubuntu-20.04
