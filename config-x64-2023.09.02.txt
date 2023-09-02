@@ -104,7 +104,7 @@ luci-app-phtunnel=y
 
 
 
-luci-app-minidlna
+luci-app-minidlna=y
 
 
 
