@@ -1,3 +1,7 @@
+#ljx
+#no docker,no lxc
+#2023.10.16
+
 CONFIG_TARGET_x86=y
 CONFIG_TARGET_x86_64=y
 CONFIG_TARGET_x86_64_DEVICE_generic=y
@@ -12,9 +16,9 @@ CONFIG_GRUB_TIMEOUT="3"
 CONFIG_GRUB_TITLE="OpenWrt,Lean x64,ljx"
 
 
-#CONFIG_ISO_IMAGES=y
-#CONFIG_QCOW2_IMAGES=y
-#CONFIG_VDI_IMAGES=y
+CONFIG_ISO_IMAGES=y
+CONFIG_QCOW2_IMAGES=y
+CONFIG_VDI_IMAGES=y
 CONFIG_VMDK_IMAGES=y
 CONFIG_VHDX_IMAGES=y
 CONFIG_TARGET_IMAGES_GZIP=y
@@ -29,7 +33,7 @@ CONFIG_PACKAGE_luci-app-squid=y
 CONFIG_PACKAGE_luci-app-guest-wifi=y
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-frps=y
-CONFIG_PACKAGE_luci-app-docker=y
+#CONFIG_PACKAGE_luci-app-docker=y
 CONFIG_PACKAGE_luci-app-hd-idle=y
 
 #CONFIG_PACKAGE_luci-app-lxc=y
@@ -60,7 +64,7 @@ luci-app-minidlna=y
 luci-app-nlbwmon=y
 
 #lxc
-luci-app-lxc=y
+#luci-app-lxc=y
 
 luci-app-transmission=y
 luci-app-ttyd=y
@@ -90,7 +94,7 @@ luci-app-usb-printer=y
 luci-app-tinyproxy=y
 
 luci-app-dnsforwarder=y
-luci-app-docker=y
+#luci-app-docker=y
 luci-app-dockerman=y
 
 
