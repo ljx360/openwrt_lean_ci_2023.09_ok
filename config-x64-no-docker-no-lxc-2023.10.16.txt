@@ -29,7 +29,10 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=400
 CONFIG_PACKAGE_luci-app-vsftpd=y
 CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-usb-printer=y
-CONFIG_PACKAGE_luci-app-squid=y
+
+#squid
+#CONFIG_PACKAGE_luci-app-squid=y
+
 CONFIG_PACKAGE_luci-app-guest-wifi=y
 CONFIG_PACKAGE_luci-app-frpc=y
 CONFIG_PACKAGE_luci-app-frps=y
